@@ -13,9 +13,12 @@ import Detail from './Detail';
 
  const arr = [
   {id: 1, name:"swimming pool", icon: <Svgicons action='pool'/>},
-  {id:2, name:"television set", icon: <Svgicons action='television' />},
-  {id:3, name:"security", icon: <Svgicons action='security' />}
-
+  {id:2, name:"Television set", icon: <Svgicons action='television' />},
+  {id:3, name:"security", icon: <Svgicons action='security' />},
+  {id:4, name: "Garden", icon: <Svgicons action='garden' />},
+  {id:5, name: "Air conditioner", icon: <Svgicons action='air' />},
+  {id:6, name: "wifi", icon: <Svgicons action='wifi' />},
+  {id:7, name: "Exercise tool", icon: <Svgicons action='tool' />},
  ]
 
  interface MyFormValues {
@@ -25,18 +28,19 @@ const Property = () => {
   const [amenities, setAmenities] = useState<any[]>([]);
   
 
-  const handleItemSelect =({item} : any) => {
+  const handleItemSelect =(item : any) => {
     
-    setAmenities(prev => [...prev,item] );
+    if(amenities.length !== 0 && amenities.includes(item)){
+     
+      amenities.filter(each => each.id !== item.id)  
+    }
+    else{
+      setAmenities(prev => [...prev,item] );
 
-    // Create a copy of the current state
-    let newAmenities = [...amenities];
-    // FIlter array
-    newAmenities.filter(el => el)
-    // Set new array as state
+    }
    
   }
-  console.log('amenitiesssss', amenities)
+  
   return (
     <div className=''>
       <FormikStepper
@@ -55,7 +59,8 @@ const Property = () => {
          state:"",
          address:"",
          city: "",
-         apartment:""
+         apartment:"",
+         amenities:amenities
          
        }}
        onSubmit={async (values) => {
@@ -329,9 +334,10 @@ const Property = () => {
          <div className='px-[63px] pb-5' >
           <p className='m-0 p-0  text-[32px] font-bold text-miniblack capitalize mt-5 mb-2'>Amenities<span className='text-base'>(0/7)</span></p>
           <p className='m-0 p-0 text-base font-semibold text-minigrey pb-2'>Pick at least one house amenity (what the house has to offer)<span className='text-pinkish'>*</span></p>
-          <div className='flex gap-x-5'>
+          <div className='flex gap-x-5' >
          { arr.map((item) => {
           return <>
+          
           <button type='button'  value={item.name} onClick={() => handleItemSelect(item)} className='btn-amenities' key={item.id}>
             {item.icon}
             <p className='p-0 m-0 text-[#101010] font-normal text-sm'>{item.name}</p>
@@ -339,31 +345,7 @@ const Property = () => {
             </>
          })
 }
-            {/* <button value='television set'  type='button'  onClick={(event) => handleItemSelect(event.target.value)} className='btn-amenities'>
-            <Svgicons action ='television'/>
-              <p className='p-0 m-0 text-[#101010] font-normal text-sm'>television set</p>
-            </button>
-            <button value='security' onClick={handleItemSelect} className='btn-amenities'>
-            <Svgicons action ='security'/>
-              <p className='p-0 m-0 text-[#101010] font-normal text-sm'>Security</p>
-            </button>
-            <button value='garden'className='btn-amenities'>
-            <Svgicons action ='garden'/>
-              <p className='p-0 m-0 text-[#101010] font-normal text-sm'>garden</p>
             
-            </button>
-            <button value='air conditioner' className='btn-amenities'>
-            <Svgicons action ='air'/>
-              <p className='p-0 m-0 text-[#101010] font-normal text-sm'>Air conditioner</p>
-            </button>
-            <button value='wifi' className='btn-amenities'>
-            <Svgicons action ='wifi'/>
-              <p className='p-0 m-0 text-[#101010] font-normal text-sm'>wifi</p>
-            </button>
-            <button value='exercise tool' className='btn-amenities'>
-            <Svgicons action ='tool'/>
-              <p className='p-0 m-0 text-[#101010] font-normal text-sm'>exercise tools</p>
-            </button>*/}
           </div> 
          </div>
         </FormikStep >
@@ -404,7 +386,7 @@ export function FormikStep({ children }: FormikStepProps) {
   const [completed, setCompleted] = useState(false);
  
  const val = currentChild.props.validationSchema;
- console.log('vallll',  currentChild.props.validationSchema)
+
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
@@ -417,7 +399,7 @@ export function FormikStep({ children }: FormikStepProps) {
       {...props}
       validationSchema={val}
       onSubmit={async (values, helpers) => {
-        console.log("values", values);
+        
         
  
         if (isLastStep()) {
