@@ -22,14 +22,18 @@ import Detail from './Detail';
    category: string;
  }
 const Property = () => {
-  const [amenities, setAmenities] = useState([]);
-  // const handleItemSelect = (item: any) => {
-  //   setAmenities([...amenities, item])
-  // }
+  const [amenities, setAmenities] = useState<any[]>([]);
+  
 
-  const handleItemSelect =(item) => {
+  const handleItemSelect =({item} : any) => {
     
     setAmenities(prev => [...prev,item] );
+
+    // Create a copy of the current state
+    let newAmenities = [...amenities];
+    // FIlter array
+    newAmenities.filter(el => el)
+    // Set new array as state
    
   }
   console.log('amenitiesssss', amenities)
@@ -66,7 +70,7 @@ const Property = () => {
             <div className='basis-1/2'>
             <Field
              name="category"
-             component={({ form }) => {
+             component={({ form } : any) => {
                return (
                  <SelectInput
                    form={form}
@@ -92,7 +96,7 @@ const Property = () => {
 
 <Field
              name="name"
-             component={({ form }) => {
+             component={({ form } :any) => {
                return (
                  <SelectInput
                    form={form}
@@ -118,7 +122,7 @@ const Property = () => {
 
 <Field
              name="beds"
-             component={({ form }) => {
+             component={({ form } :any) => {
                return (
                  <SelectInput
                    form={form}
@@ -144,7 +148,7 @@ const Property = () => {
 
 <Field
              name="finance"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <SelectInput
                    form={form}
@@ -170,7 +174,7 @@ const Property = () => {
             <div className='basis-1/2'>
             <Field
              name="condition"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <SelectInput
                    form={form}
@@ -196,7 +200,7 @@ const Property = () => {
 
            <Field
              name="service"
-             component={({ form }) => {
+             component={({ form }:any) => {
                return (
                  <TextInput
                    form={form}
@@ -217,7 +221,7 @@ const Property = () => {
           
           <Field
              name="about"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <SelectArea
                    form={form}
@@ -248,7 +252,7 @@ const Property = () => {
          <div className='basis-1/2'>
          <Field
              name="service"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <TextInput
                    form={form}
@@ -268,7 +272,7 @@ const Property = () => {
            />
            <Field
              name="duration"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <SelectInput
                    form={form}
@@ -295,7 +299,7 @@ const Property = () => {
          
          <Field
              name="recurringamount"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <TextInput
                    form={form}
@@ -393,27 +397,28 @@ export function FormikStep({ children }: FormikStepProps) {
   ...props
  }: FormikConfig<FormikValues>) {
   const childrenArray = React.Children.toArray(
-    children
-  ) as React.ReactElement<FormikStepProps>[];
+    children as React.ReactNode
+  ) ;
   const [step, setStep] = useState(0);
-  const currentChild = childrenArray[step];
+  const currentChild: any = childrenArray[step];
   const [completed, setCompleted] = useState(false);
  
- 
+ const val = currentChild.props.validationSchema;
+ console.log('vallll',  currentChild.props.validationSchema)
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
-  // console.log("chikdren", children, props, isLastStep(), childrenArray.length);
-  console.log("current child ", currentChild);
+  
 
  
  
   return (
     <Formik
       {...props}
-      validationSchema={currentChild.props.validationSchema}
+      validationSchema={val}
       onSubmit={async (values, helpers) => {
         console.log("values", values);
+        
  
         if (isLastStep()) {
           props.onSubmit(values, helpers);

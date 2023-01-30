@@ -21,5 +21,5 @@ export const PropertySchema = Yup.object().shape({
       recurringamount: Yup.number()
       .required('Field Name is required'),
       description: Yup.string(),
-      selectedAmenities: Yup.array().required('At least one amenity must be selected')
+      // selectedAmenities: Yup.array().required('At least one amenity must be selected')
   });

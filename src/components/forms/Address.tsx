@@ -15,7 +15,7 @@ export const Address = () => {
         <div className='basis-1/2'>
         <Field
              name="address"
-             component={({ form }) => {
+             component={({ form }:any) => {
                return (
                  <TextInput
                    form={form}
@@ -36,7 +36,7 @@ export const Address = () => {
      
       <Field
              name="state"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <SelectInput
                    form={form}
@@ -62,7 +62,7 @@ export const Address = () => {
         <div className='basis-1/2'>
         <Field
              name="city"
-             component={({ form }) => {
+             component={({ form }: any) => {
                return (
                  <SelectInput
                    form={form}
@@ -87,7 +87,7 @@ export const Address = () => {
 
 <Field
              name="apartment"
-             component={({ form }) => {
+             component={({ form } : any) => {
                return (
                  <TextInput
                    form={form}
