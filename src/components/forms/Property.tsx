@@ -338,7 +338,7 @@ const Property = () => {
          { arr.map((item) => {
           return <>
           
-          <button type='button'  value={item.name} onClick={() => handleItemSelect(item)} className='btn-amenities' key={item.id}>
+          <button type='button'  value={item.name} onClick={() => handleItemSelect(item)} className={`btn-amenities ${amenities.includes(item) && 'btn-selected'  } `} key={item.id}>
             {item.icon}
             <p className='p-0 m-0 text-[#101010] font-normal text-sm'>{item.name}</p>
             </button>

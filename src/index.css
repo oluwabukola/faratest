@@ -34,6 +34,10 @@
     @apply box-border border-[1.5px] border-[#1CC64B] rounded-[10px]
     px-3.5 py-3 flex items-center justify-center flex-col gap-y-3 w-[133px];
   }
+  .btn-selected {
+    @apply box-border border-[1.5px] border-[#1CC64B] rounded-[10px] bg-red-200
+    px-3.5 py-3 flex items-center justify-center flex-col gap-y-3 w-[133px];
+  }
 
   .btn-next {
     @apply box-border bg-pinkish text-white rounded-lg py-2 px-24
