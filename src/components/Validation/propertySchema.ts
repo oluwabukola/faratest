@@ -11,5 +11,15 @@ export const PropertySchema = Yup.object().shape({
       .required('Field Name is required'),
       condition: Yup.string()
       .required('Field Name is required'),
-    
+      service: Yup.number(),
+      about: Yup.string()
+      .required('Field Name is required'),
+      amount: Yup.string()
+      .required('Field Name is required'),
+      duration: Yup.string()
+      .required('Field Name is required'),
+      recurringamount: Yup.number()
+      .required('Field Name is required'),
+      description: Yup.string(),
+      selectedAmenities: Yup.array().required('At least one amenity must be selected')
   });

@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'greyish': '#EEEEEE',
-        'pinkish': '#FF385C;',
+        'pinkish': '#FF385C',
         'grey2': '#A5B0B7',
         'grey3': '#D3D3D3',
         'miniblack': '#383838',

@@ -34,4 +34,13 @@
     @apply box-border border-[1.5px] border-[#1CC64B] rounded-[10px]
     px-3.5 py-3 flex items-center justify-center flex-col gap-y-3 w-[133px];
   }
+
+  .btn-next {
+    @apply box-border bg-pinkish text-white rounded-lg py-2 px-24
+    text-base font-semibold capitalize flex justify-center items-center 
+  }
+  .btn-back {
+    @apply box-border bg-white text-[#292929] rounded-lg py-2 px-24
+    text-base font-semibold capitalize flex justify-center items-center border border-solid border-black
+  }
 }
